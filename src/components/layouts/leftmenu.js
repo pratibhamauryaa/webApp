@@ -12,9 +12,9 @@ import { TbBoxSeam, TbCoinRupee, TbUsers, TbReportMoney, TbListSearch, TbUserPlu
 
 const LeftSideMenu = ({ selectedOption, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
-  
-  
 
+  
+  
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
