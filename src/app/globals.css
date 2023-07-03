@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import url(https://fonts.googleapis.com/css?family=Mukta:400,600,700);
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -24,4 +22,8 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
+}
+
+* {
+  font-family: Mukta,sans-serif;
 }
