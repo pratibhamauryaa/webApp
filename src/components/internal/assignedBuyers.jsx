@@ -2,7 +2,7 @@
 import '../../app/globals.css';
 import '../../styles/bootstrap.min.css';
 import '../../styles/dashboard.css';
-import { MdPersonAdd, MdSync, MdOutlineCheckCircleOutline,MdAddCircle } from 'react-icons/md';
+import { MdPersonAdd, MdSync, MdOutlineCheckCircleOutline, MdAddCircle } from 'react-icons/md';
 import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
@@ -64,7 +64,7 @@ const AssignedBuyers = () => {
     setIsValidGSTNumber(isValid);
 
     if (!isValid) {
-      return; 
+      return;
     }
 
     try {
@@ -103,9 +103,9 @@ const AssignedBuyers = () => {
         mobileNumber: buyerMobileNumber,
         buyerStatus: 'Active',
         buyerGSTNumber: buyerGST,
-        disbursedAmount:34445556.00,
-        totalAmountFinanced:78996656.00,
-        totalInvoiceUploaded:23,
+        disbursedAmount: 34445556.00,
+        totalAmountFinanced: 78996656.00,
+        totalInvoiceUploaded: 23,
       });
 
       Swal.fire({
@@ -133,14 +133,14 @@ const AssignedBuyers = () => {
     const fetchBuyers = async () => {
       try {
         const response = await axios.get('http://localhost:9002/buyers');
-        console.log(response.data);
+        // console.log(response.data);
         const sortedBuyers = response.data.reverse();
         setBuyers(sortedBuyers);
       } catch (error) {
         console.error(error);
       }
     };
-  
+
     fetchBuyers();
   }, [buyers]);
 
@@ -154,19 +154,17 @@ const AssignedBuyers = () => {
             <div className="page-content-wrapper">
               <div className="page-content-wrapper">
                 <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <div className="float-right page-breadcrumb">
-                        <ol className="breadcrumb">
-                          <li className="breadcrumb-item">
-                            <a href="#">XTRACAPNEO</a>
-                          </li>
-                          <li className="breadcrumb-item active">Assigned Buyers</li>
-                        </ol>
-                      </div>
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <h1 className="int-heading">Assigned Buyers</h1>
+                    <div className="float-right page-breadcrumb">
+                      <ol className="breadcrumb">
+                        <li className="breadcrumb-item">
+                          <a href="#">XTRACAPNEO</a>
+                        </li>
+                        <li className="breadcrumb-item active">Assigned buyers</li>
+                      </ol>
                     </div>
                   </div>
-                  <h1 className="int-heading">Assigned Buyers</h1>
                   <div className="card m-b-20 card-body">
                     <div className="buyer-container-heading">
                       <h2 className="" style={{ fontSize: '25px' }}>
@@ -308,59 +306,59 @@ const AssignedBuyers = () => {
                           <tbody>
                             {buyers.filter(filterBuyers).map((buyer, index) => (
                               <>
-                              <tr key={index}>
-                                <td>{buyer.buyerName}</td>
-                                <td>{buyer.businessName}</td>
-                                <td>{buyer.mobileNumber}</td>
-                                <td>{buyer.disbursedAmount}</td>
-                                <td>{buyer.totalAmountFinanced}</td>
-                                <td>{buyer.totalInvoiceUploaded}</td>
-                                <td>{buyer.buyerStatus}</td>
-                                <td style={{textAlign:"center"}}>
-                                  <MdAddCircle className="exp-bnk-det-icon" style={{color:"#010080", width:"30px", height:"20px"}}  onClick={() => handleToggleRow(index)}/>
-                                  </td>
-                              </tr>
-                               {expandedRows.includes(index) && (
-                                <tr>
-                                  <td colSpan={8}>
-                                  <div className="col-sm-12">
-                                    <h3>Bank Details</h3>
-                                            <table
-                                                className="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline table-remove-hover"
-                                                style={{ borderCollapse: 'collapse', borderSpacing: '0px', width: '100%',backgroundColor:"#fff" }}
-                                                role="grid"
-                                                aria-describedby="datatable-buttons_inf">
-                                                <thead>
-                                                    <tr role="row">
-                                                        <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '300px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                                            Bank Name
-                                                        </th>
-                                                        <td tabIndex="0" className="sorting_1">
-                                                            KOTAK MAHINDRA BANK
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                                            Account Number
-                                                        </th>
-                                                        <td tabIndex="0" className="sorting_1">
-                                                            11111111111111
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
-                                                            Bank IFSC
-                                                        </th>
-                                                        <td tabIndex="0" className="sorting_1">
-                                                            ABCCD0001
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                        </div>
+                                <tr key={index}>
+                                  <td className='text-uppercase'>{buyer.buyerName}</td>
+                                  <td>{buyer.businessName}</td>
+                                  <td>{buyer.mobileNumber}</td>
+                                  <td>{buyer.disbursedAmount}</td>
+                                  <td>{buyer.totalAmountFinanced}</td>
+                                  <td>{buyer.totalInvoiceUploaded}</td>
+                                  <td>{buyer.buyerStatus}</td>
+                                  <td style={{ textAlign: "center" }}>
+                                    <MdAddCircle className="exp-bnk-det-icon" style={{ color: "#010080", width: "30px", height: "20px" }} onClick={() => handleToggleRow(index)} />
                                   </td>
                                 </tr>
-                              )}
+                                {expandedRows.includes(index) && (
+                                  <tr>
+                                    <td colSpan={8}>
+                                      <div className="col-sm-12">
+                                        <h3>Bank Details</h3>
+                                        <table
+                                          className="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline table-remove-hover"
+                                          style={{ borderCollapse: 'collapse', borderSpacing: '0px', width: '100%', backgroundColor: "#fff" }}
+                                          role="grid"
+                                          aria-describedby="datatable-buttons_inf">
+                                          <thead>
+                                            <tr role="row">
+                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '300px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                                Bank Name
+                                              </th>
+                                              <td tabIndex="0" className="sorting_1">
+                                                KOTAK MAHINDRA BANK
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                                Account Number
+                                              </th>
+                                              <td tabIndex="0" className="sorting_1">
+                                                11111111111111
+                                              </td>
+                                            </tr>
+                                            <tr>
+                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                                Bank IFSC
+                                              </th>
+                                              <td tabIndex="0" className="sorting_1">
+                                                ABCCD0001
+                                              </td>
+                                            </tr>
+                                          </thead>
+                                        </table>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                )}
                               </>
                             ))}
                           </tbody>
@@ -401,7 +399,7 @@ const AssignedBuyers = () => {
               />
             </Form.Group>
             <Form.Group controlId="buyerGST" style={{ marginTop: "10px" }}>
-              <Form.Label  className={`form-group ${!isValidGSTNumber ? 'has-error' : ''}`}>Buyer's GST</Form.Label>
+              <Form.Label className={`form-group ${!isValidGSTNumber ? 'has-error' : ''}`}>Buyer's GST</Form.Label>
               <div className="input-group" >
                 <Form.Control
                   className={`form-control ${!isValidGSTNumber ? 'has-error-box' : ''}`}
@@ -424,7 +422,7 @@ const AssignedBuyers = () => {
                     'Validate'
                   )}
                 </Button>
-                
+
               </div>
               {!isValidGSTNumber && <div className="help-block">Please enter a valid GST number</div>}
 

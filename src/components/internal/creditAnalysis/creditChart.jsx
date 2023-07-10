@@ -12,8 +12,8 @@ const creditChart = () => {
                 label: 'Available Balance (Rupees)',
                 data: [6000000, 5000000, 4500000, 4000000, 3000000, 2100000],
                 fill: true,
-                backgroundColor: "rgba(75, 192, 95, 0.2)",
-                borderColor: "rgba(75, 192, 95)",
+                backgroundColor: " rgba(17, 7, 155, 0.4)",
+                borderColor: " rgba(17, 7, 155)",
                 cubicInterpolationMode: 'monotone',
             },
         ],
@@ -53,22 +53,29 @@ const creditChart = () => {
     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flexDirection: 'column',flexWrap:"nowrap" }}>
             <div className='card m-b-20 card-body' style={{ boxShadow: "none" }}>
+                <div className='card-content'>
                 <table>
-                    <tbody >
-                        <tr className='cd-cl-1'>
+                    <tbody style={{display:"flex", justifyContent:"space-between"}}>
+                        <tr className='cd-cl-1' >
                             <td style={{ border: '0px solid white'}}>
-                                <p className=' cd-heading' style={{textAlign:"left"}}>Offered Credit Limit</p>
-                                <p className='price' style={{ fontSize: '30px' ,textAlign:"left"}}>6,00,000.00</p>
+                                <p className=' cd-heading text-db' style={{fontSize:"20px"}}>Offered Credit Limit</p>
+                                <p className='price ' style={{fontSize:"20px" }}>6,00,000.00</p>
                             </td>
-                            <td style={{ border: '0px solid white' }}>
-                                <p className='cd-heading' style={{textAlign:"right"}}>Available Balance</p>
-                                <p className='price'  style={{ fontSize: '30px' ,textAlign:"right"}}>2,10,0000.00</p>
+                            
+                        </tr>
+                        <tr>
+                        <td style={{ border: '0px solid white' }}>
+                                <p className='cd-heading text-db' style={{fontSize:"20px"}}>Available Balance</p>
+                                <p className='price'  style={{fontSize:"20px"}}>2,10,0000.00</p>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+
+                </div>
+                
             </div>
             <div style={{ flex: 1 }}>
                 <Line data={data} options={options} />

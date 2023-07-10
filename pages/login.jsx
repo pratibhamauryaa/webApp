@@ -9,7 +9,6 @@ import '../src/styles/login.css'
 
 export default function Login() {
   const [show, setShow] = useState(true);
-  const handleClose = () => setShow(false);
   const router = useRouter();
 
   const [user, setUser] = useState({
@@ -19,9 +18,10 @@ export default function Login() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (value.length > 10) {
-      alert("You have entered an invalid mobile number");
-    }
+   
+    // if (value.length > 10) {
+    //   alert("You have entered an invalid mobile number");
+    // }
     setUser({
       ...user,
       [name]: value,
@@ -29,12 +29,16 @@ export default function Login() {
   };
 
   const login = () => {
+    const newUser = {
+      "userName": "neo_web_uat",
+      "password": "d23dnj@#dpz4"
+    }
     axios
-      .post("http://localhost:9002/login", user)
+      .post("http://localhost:9002/login", newUser)
       .then((res) => {
-        alert(res.data.message);
+        // alert(res.data.status);
         console.log(res);
-        if (res.data.status === "success") {
+        if (res.data.status === "Success" && res.data.errors == "" ) {
           router.push('/dashboard');
         }
       });

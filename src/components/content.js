@@ -8,10 +8,10 @@ import Incoices from './internal/invoices/invoices';
 import InvoiceUpload from './internal/invoices/uploadInvoice';
 
 
-const Content = ({ selectedOption }) => {
+const ContentArea = ({ selectedOption }) => {
   console.log(selectedOption)
   return (
-    <div>
+    <div id='wrapper' className='enlarged'>
       {selectedOption === 'home' && <div><Home/></div>}
       {selectedOption === 'product-details' && <div><ProductDetails/></div>}
       {selectedOption === 'credit' && <div> <Credit/></div>}
@@ -23,4 +23,4 @@ const Content = ({ selectedOption }) => {
   );
 };
 
-export default Content;
+export default ContentArea;

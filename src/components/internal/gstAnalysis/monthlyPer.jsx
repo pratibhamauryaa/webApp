@@ -112,8 +112,6 @@ const DonutChart = () => {
         if (chartRefs.current.length > 0 && selectedYear !== '') {
             createCharts();
         }
-
-
         return () => {
             chartInstances.forEach((instance) => {
                 instance.destroy();

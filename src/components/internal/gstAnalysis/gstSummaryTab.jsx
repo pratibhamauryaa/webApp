@@ -214,9 +214,6 @@ const GstSummaryTab = () => {
                         </div>
 
                     </div>
-
-
-
                 </div>
 
             </div>

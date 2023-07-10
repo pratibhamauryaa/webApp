@@ -13,36 +13,33 @@ const Credit = () => {
                     <div className="page-content-wrapper">
                         <div className="page-content-wrapper">
                             <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="float-right page-breadcrumb">
-                                            <ol className="breadcrumb">
-                                                <li className="breadcrumb-item">
-                                                    <a href="#">XTRACAPNEO</a>
-                                                </li>
-                                                <li className="breadcrumb-item active">Credit</li>
-                                            </ol>
-                                        </div>
-
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <h1 className="int-heading">Credit Details</h1>
+                                    <div className="float-right page-breadcrumb">
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item">
+                                                <a href="#">XTRACAPNEO</a>
+                                            </li>
+                                            <li className="breadcrumb-item active">Credit</li>
+                                        </ol>
                                     </div>
                                 </div>
-                                <h1 className="int-heading">Credit Details</h1>
                                 <div className='row' style={{justifyContent:"space-between"}}>
-                                    <div className='card m-b-20 card-body' style={{ width: "0%", marginRight: "20px" ,boxShadow: "none",marginLeft: "20px"}}>
+                                    <div className='card m-b-20 card-body pd-card' style={{ width: "0%", marginRight: "20px" ,boxShadow: "none",marginLeft: "20px"}}>
                                         <div>
                                             <CreditChart />
                                         </div>
 
                                     </div>
-                                    <div className='card m-b-20 card-body' style={{ width: "0px", marginRight: "20px",boxShadow: "none", paddingTop:"30px" }}>
+                                    <div className='card m-b-20 card-body pd-card' style={{ width: "0px", marginRight: "20px",boxShadow: "none", paddingTop:"30px" }}>
                                         <table>
                                             <tbody>
                                                 <tr className='cd-cl-1'>
-                                                    <td><p className="cd-heading">Total Disbursed Invoices</p> <p style={{ fontSize: '30px' }}>10</p></td>
+                                                    <td><p className="cd-heading text-db"style={{ fontSize: '20px' }}>Total Disbursed Invoices</p> <p style={{ fontSize: '30px' }}>10</p></td>
 
                                                 </tr>
                                                 <tr className='cd-cl-1'>
-                                                    <td><p className="cd-heading">Total Amount</p> <p style={{ fontSize: '30px' }} className='price'>10,34550.00</p></td>
+                                                    <td><p className="cd-heading text-db"style={{ fontSize: '20px' }}>Total Amount</p> <p style={{ fontSize: '30px' }} className='price'>10,34550.00</p></td>
 
                                                 </tr>
                                             </tbody>

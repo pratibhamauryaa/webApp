@@ -2,6 +2,7 @@ import React from 'react'
 import '../../app/globals.css'
 import '../../styles/bootstrap.min.css'
 import '../../styles/dashboard.css'
+import { AiFillBank } from "react-icons/ai";
 
 
 
@@ -13,27 +14,24 @@ export const ProductDetails = () => {
                     <div className="page-content-wrapper">
                         <div className="page-content-wrapper">
                             <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="float-right page-breadcrumb">
-                                            <ol className="breadcrumb">
-                                                <li className="breadcrumb-item">
-                                                    <a href="#">XTRACAPNEO</a>
-                                                </li>
-                                                <li className="breadcrumb-item active">Product Details</li>
-                                            </ol>
-                                        </div>
-
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <h1 className="int-heading">Product Details</h1>
+                                    <div className="float-right page-breadcrumb">
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item">
+                                                <a href="#">XTRACAPNEO</a>
+                                            </li>
+                                            <li className="breadcrumb-item active">Product Details</li>
+                                        </ol>
                                     </div>
                                 </div>
-                                <h1 className="int-heading">Product Details</h1>
 
-                                <div className='card m-b-20 card-body'>
-                                    <div className="card-header">
-                                        <div className="card-icon">
-                                            <img src="icon.png" alt="Icon" />
+                                <div className='card m-b-20 card-body pd-card'>
+                                    <div className="card-header pd-title-bg"style={{marginLeft:"0px", paddingLeft:"0px", borderBottom:"0px"}}>
+                                        <div className="" style={{marginLeft:"0px", paddingLeft:"0px"}}>
+                                           <AiFillBank className="pd-title-icon text-db"/>
                                         </div>
-                                        <div className="card-title">
+                                        <div className="card-title text-db">
                                             <h4>Configured Products</h4>
                                         </div>
                                     </div>

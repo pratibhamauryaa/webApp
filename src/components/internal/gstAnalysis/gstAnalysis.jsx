@@ -16,20 +16,17 @@ const GstAnalysis = () => {
                     <div className="page-content-wrapper">
                         <div className="page-content-wrapper">
                             <div className="container-fluid">
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        <div className="float-right page-breadcrumb">
-                                            <ol className="breadcrumb">
-                                                <li className="breadcrumb-item">
-                                                    <a href="">XTRACAPNEO</a>
-                                                </li>
-                                                <li className="breadcrumb-item active">GST Analysis</li>
-                                            </ol>
-                                        </div>
-
+                            <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <h1 className="int-heading">Performance Summary</h1>
+                                    <div className="float-right page-breadcrumb">
+                                        <ol className="breadcrumb">
+                                            <li className="breadcrumb-item">
+                                                <a href="#">XTRACAPNEO</a>
+                                            </li>
+                                            <li className="breadcrumb-item active">GST Analysis</li>
+                                        </ol>
                                     </div>
                                 </div>
-                                <h1 className="int-heading">Performance Summary</h1>
                                 <div className='gst-sel' style={{ paddingLeft: "20px", paddingBottom: "20px", paddingTop: "20px", display: "flex" }}>
                                     <h6 className='' style={{ marginTop: "10px" }}>GST Number</h6>
                                     <div className='gst-sel-drop' style={{ marginLeft: "25px", marginBottom: "20px" }}>

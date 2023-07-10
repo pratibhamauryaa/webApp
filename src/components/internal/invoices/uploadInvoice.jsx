@@ -8,6 +8,7 @@ const InvoiceUpload = () => {
   const [selectedBuyer, setSelectedBuyer] = useState('');
   const [invoiceAmount, setInvoiceAmount] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const[prevImage, setPrevImage] = useState('');
   // const [showAlert, setShowAlert] = useState(false);
   const [isValidGSTNumber, setIsValidGSTNumber] = useState(true);
 
@@ -22,6 +23,15 @@ const InvoiceUpload = () => {
   const handleDrop = (e) => {
     e.preventDefault();
     const file = e.dataTransfer.files[0];
+    // const fileprev = e.dataTransfer.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = ()=> {
+        setPrevImage(reader.result);
+        // console.log(reader.result);
+      }
+    }
     setSelectedFile(file);
   };
 
@@ -35,23 +45,25 @@ const InvoiceUpload = () => {
       return; 
     }
 
-    const formData = new FormData();
-    formData.append('gstNumber', gstNumber);
-    formData.append('selectedBuyer', selectedBuyer);
-    formData.append('invoiceAmount', invoiceAmount);
-    formData.append('file', selectedFile);
+    // const formData = new FormData();
+    // formData.append('gstNumber', gstNumber);
+    // formData.append('selectedBuyer', selectedBuyer);
+    // formData.append('invoiceAmount', invoiceAmount);
+    // formData.append('file', selectedFile);
 
     try {
-      await axios.post('http://localhost:9002/invoices', {
+      console.log(selectedFile);
+      await axios.post('http://localhost:9002/invoices',{
         requestNumber: '34553',
-        invoiceDate: Date,
+        invoiceDate: new Date,
         invoiceUtrNo: 11223344,
         invoiceStatus: 'Disbursed',
         invBilledTo: selectedBuyer,
         amt: invoiceAmount,
         gstNumber: gstNumber,
+        file:selectedFile,
 
-      });
+      },);
 
       Swal.fire({
         title: 'Success',
@@ -101,7 +113,7 @@ const InvoiceUpload = () => {
                       <h1 className="int-heading">Upload Invoice</h1>
                       <div className="card m-b-20 card-body">
                         <div className="">
-                          <form onSubmit={handleSubmit} style={{ padding: "80px 80px 80px 80px" }}>
+                          <form onSubmit={handleSubmit} style={{ padding: "80px 80px 80px 80px" }} encType='multipart/form-data' >
                             <div className="form-group">
                               <label htmlFor="gstNumber"  className={`form-group ${!isValidGSTNumber ? 'has-error' : ''}`} >GST Number:</label>
                               <input
@@ -148,12 +160,13 @@ const InvoiceUpload = () => {
                                 onDragOver={handleDragOver}
                                 onDrop={handleDrop}
                               >
-                                {selectedFile ? (
+                                {prevImage ? (
                                   <div style={{ border: "2px dashed grey", textAlign: "center",justifyContent: "center", padding: "30px", height:"200px" }}>
                                     <i className="fa fa-file-text-o fa-3x" aria-hidden="true">
-                                      <MdFileDownloadDone style={{ width: "100px", height: "100px", color: "rgba(189, 189, 189, 0.623)" }} />
+                                      {/* <MdFileDownloadDone style={{ width: "100px", height: "100px", color: "rgba(189, 189, 189, 0.623)" }} /> */}
+                                      <img src={prevImage}  style={{ width: "100px", height: "100px", color: "rgba(189, 189, 189, 0.623)" }} />
                                     </i>
-                                    <p>{selectedFile.name}</p>
+                                   
                                   </div>
                                 ) : (
                                   <div style={{ border: "2px dashed grey", textAlign: "center", justifyContent: "center", padding: "30px",height:"200px"  }}>
@@ -166,6 +179,7 @@ const InvoiceUpload = () => {
                                       onChange={handleFileUpload}
                                       required
                                       style={{ border: "none" }}
+                                     
                                     />
                                   </div>
                                 )}
