@@ -10,12 +10,14 @@ const DashboardPage = () => {
   const handleMenuSelect = (option) => {
     setSelectedOption(option);
   };
+   
+  
 
   return (
 
       <Layout>
       <LeftSideMenu  selectedOption={selectedOption} onSelect={handleMenuSelect} />
-      <Header />
+      <Header onSelect={handleMenuSelect} />
       <Layout>
       </Layout>
       <Content selectedOption={selectedOption} />

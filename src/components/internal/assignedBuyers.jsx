@@ -1,13 +1,11 @@
-// import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../app/globals.css';
 import '../../styles/bootstrap.min.css';
 import '../../styles/dashboard.css';
 import { MdPersonAdd, MdSync, MdOutlineCheckCircleOutline, MdAddCircle } from 'react-icons/md';
-import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const AssignedBuyers = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,6 +19,8 @@ const AssignedBuyers = () => {
   const [buyers, setBuyers] = useState([]);
   const [expandedRows, setExpandedRows] = useState([]);
   const [isValidGSTNumber, setIsValidGSTNumber] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [buyersPerPage] = useState(10);
 
   const handleToggleRow = (index) => {
     const expandedIndex = expandedRows.indexOf(index);
@@ -46,6 +46,8 @@ const AssignedBuyers = () => {
     setModalOpen(true);
   };
 
+
+
   const handleCloseModal = () => {
     setModalOpen(false);
     setBuyerMobileNumber('');
@@ -55,7 +57,6 @@ const AssignedBuyers = () => {
     setValidated(false);
     setValidating(false);
   };
-
 
   // handle validate gst
   const handleValidateGST = async () => {
@@ -93,7 +94,6 @@ const AssignedBuyers = () => {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -128,12 +128,11 @@ const AssignedBuyers = () => {
     }
   };
 
-  //fetch buyers
+  // Fetch buyers
   useEffect(() => {
     const fetchBuyers = async () => {
       try {
         const response = await axios.get('http://localhost:9002/buyers');
-        // console.log(response.data);
         const sortedBuyers = response.data.reverse();
         setBuyers(sortedBuyers);
       } catch (error) {
@@ -144,7 +143,13 @@ const AssignedBuyers = () => {
     fetchBuyers();
   }, [buyers]);
 
+  // Calculate the indexes for pagination
+  const indexOfLastBuyer = currentPage * buyersPerPage;
+  const indexOfFirstBuyer = indexOfLastBuyer - buyersPerPage;
+  const currentBuyers = buyers.slice(indexOfFirstBuyer, indexOfLastBuyer);
 
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div>
@@ -210,7 +215,8 @@ const AssignedBuyers = () => {
                           className="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline table-hover"
                           style={{ borderCollapse: 'collapse', borderSpacing: '0px', width: '100%' }}
                           role="grid"
-                          aria-describedby="datatable-buttons_info" >
+                          aria-describedby="datatable-buttons_info"
+                        >
                           <thead>
                             <tr role="row">
                               <th
@@ -221,7 +227,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Buyer Name
                               </th>
                               <th
@@ -232,7 +239,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Business Name
                               </th>
                               <th
@@ -243,7 +251,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Mobile Number
                               </th>
                               <th
@@ -254,7 +263,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Disbursed Amount
                               </th>
                               <th
@@ -265,7 +275,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Total Amount Financed
                               </th>
                               <th
@@ -276,7 +287,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Total Invoice Uploaded
                               </th>
                               <th
@@ -287,7 +299,8 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Status
                               </th>
                               <th
@@ -298,13 +311,14 @@ const AssignedBuyers = () => {
                                 colSpan="1"
                                 style={{ width: '300px', textAlign: 'center', whiteSpace: 'nowrap' }}
                                 aria-sort="ascending"
-                                aria-label="Name: activate to sort column descending">
+                                aria-label="Name: activate to sort column descending"
+                              >
                                 Bank Details
                               </th>
                             </tr>
                           </thead>
                           <tbody>
-                            {buyers.filter(filterBuyers).map((buyer, index) => (
+                            {currentBuyers.filter(filterBuyers).map((buyer, index) => (
                               <>
                                 <tr key={index}>
                                   <td className='text-uppercase'>{buyer.buyerName}</td>
@@ -314,8 +328,12 @@ const AssignedBuyers = () => {
                                   <td>{buyer.totalAmountFinanced}</td>
                                   <td>{buyer.totalInvoiceUploaded}</td>
                                   <td>{buyer.buyerStatus}</td>
-                                  <td style={{ textAlign: "center" }}>
-                                    <MdAddCircle className="exp-bnk-det-icon" style={{ color: "#010080", width: "30px", height: "20px" }} onClick={() => handleToggleRow(index)} />
+                                  <td style={{ textAlign: 'center' }}>
+                                    <MdAddCircle
+                                      className="exp-bnk-det-icon"
+                                      style={{ color: '#010080', width: '30px', height: '20px' }}
+                                      onClick={() => handleToggleRow(index)}
+                                    />
                                   </td>
                                 </tr>
                                 {expandedRows.includes(index) && (
@@ -325,12 +343,22 @@ const AssignedBuyers = () => {
                                         <h3>Bank Details</h3>
                                         <table
                                           className="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline table-remove-hover"
-                                          style={{ borderCollapse: 'collapse', borderSpacing: '0px', width: '100%', backgroundColor: "#fff" }}
+                                          style={{ borderCollapse: 'collapse', borderSpacing: '0px', width: '100%', backgroundColor: '#fff' }}
                                           role="grid"
-                                          aria-describedby="datatable-buttons_inf">
+                                          aria-describedby="datatable-buttons_inf"
+                                        >
                                           <thead>
                                             <tr role="row">
-                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '300px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                              <th
+                                                className="sorting_asc"
+                                                tabIndex="0"
+                                                aria-controls="datatable-buttons"
+                                                rowSpan="1"
+                                                colSpan="1"
+                                                style={{ width: '300px' }}
+                                                aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                              >
                                                 Bank Name
                                               </th>
                                               <td tabIndex="0" className="sorting_1">
@@ -338,7 +366,16 @@ const AssignedBuyers = () => {
                                               </td>
                                             </tr>
                                             <tr>
-                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                              <th
+                                                className="sorting_asc"
+                                                tabIndex="0"
+                                                aria-controls="datatable-buttons"
+                                                rowSpan="1"
+                                                colSpan="1"
+                                                style={{ width: '102px' }}
+                                                aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                              >
                                                 Account Number
                                               </th>
                                               <td tabIndex="0" className="sorting_1">
@@ -346,7 +383,16 @@ const AssignedBuyers = () => {
                                               </td>
                                             </tr>
                                             <tr>
-                                              <th className="sorting_asc" tabIndex="0" aria-controls="datatable-buttons" rowSpan="1" colSpan="1" style={{ width: '102px' }} aria-sort="ascending" aria-label="Name: activate to sort column descending">
+                                              <th
+                                                className="sorting_asc"
+                                                tabIndex="0"
+                                                aria-controls="datatable-buttons"
+                                                rowSpan="1"
+                                                colSpan="1"
+                                                style={{ width: '102px' }}
+                                                aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                              >
                                                 Bank IFSC
                                               </th>
                                               <td tabIndex="0" className="sorting_1">
@@ -365,6 +411,27 @@ const AssignedBuyers = () => {
                         </table>
                       </div>
                     </div>
+                    <div className="pagination">
+                      <ul className="pagination">
+                        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+                          <button className="page-link" onClick={() => paginate(currentPage - 1)}>
+                            Previous
+                          </button>
+                        </li>
+                        {Array.from({ length: Math.ceil(buyers.length / buyersPerPage) }, (_, index) => (
+                          <li className={`page-item ${currentPage === index + 1 ? 'active' : ''}`} key={index}>
+                            <button className="page-link" onClick={() => paginate(index + 1)}>
+                              {index + 1}
+                            </button>
+                          </li>
+                        ))}
+                        <li className={`page-item ${currentPage === Math.ceil(buyers.length / buyersPerPage) ? 'disabled' : ''}`}>
+                          <button className="page-link" onClick={() => paginate(currentPage + 1)}>
+                            Next
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -374,46 +441,42 @@ const AssignedBuyers = () => {
       </div>
       <Modal show={modalOpen} onHide={handleCloseModal} centered>
         <Modal.Header>
-          <Modal.Title style={{ fontWeight: "bolder" }}>ADD BUYER</Modal.Title>
+          <Modal.Title style={{ fontWeight: 'bolder' }}>ADD BUYER</Modal.Title>
         </Modal.Header>
         <Form onSubmit={handleSubmit}>
           <Modal.Body>
-            <Form.Group controlId="buyerMobileNumber" style={{ marginTop: "10px" }}>
+            <Form.Group controlId="buyerMobileNumber" style={{ marginTop: '10px' }}>
               <Form.Label>Buyer's Mobile No.</Form.Label>
               <Form.Control
                 type="text"
                 value={buyerMobileNumber}
                 onChange={(e) => setBuyerMobileNumber(e.target.value)}
-                autoComplete='off'
+                autoComplete="off"
                 required
               />
             </Form.Group>
-            <Form.Group controlId="buyerName" style={{ marginTop: "10px" }}>
+            <Form.Group controlId="buyerName" style={{ marginTop: '10px' }}>
               <Form.Label>Buyer's Name</Form.Label>
               <Form.Control
                 type="text"
                 value={buyerName}
                 onChange={(e) => setBuyerName(e.target.value)}
-                autoComplete='off'
+                autoComplete="off"
                 required
               />
             </Form.Group>
-            <Form.Group controlId="buyerGST" style={{ marginTop: "10px" }}>
+            <Form.Group controlId="buyerGST" style={{ marginTop: '10px' }}>
               <Form.Label className={`form-group ${!isValidGSTNumber ? 'has-error' : ''}`}>Buyer's GST</Form.Label>
-              <div className="input-group" >
+              <div className="input-group">
                 <Form.Control
                   className={`form-control ${!isValidGSTNumber ? 'has-error-box' : ''}`}
                   type="text"
                   value={buyerGST}
                   onChange={(e) => setBuyerGST(e.target.value)}
-                  autoComplete='off'
+                  autoComplete="off"
                   required
                 />
-                <Button
-                  variant="outline-success"
-                  onClick={handleValidateGST}
-                  disabled={validating || validated}
-                >
+                <Button variant="outline-success" onClick={handleValidateGST} disabled={validating || validated}>
                   {validating ? (
                     <MdSync spin />
                   ) : validated ? (
@@ -422,28 +485,18 @@ const AssignedBuyers = () => {
                     'Validate'
                   )}
                 </Button>
-
               </div>
               {!isValidGSTNumber && <div className="help-block">Please enter a valid GST number</div>}
-
             </Form.Group>
             {validatedBuyerName && (
-              <Form.Group style={{ marginTop: "10px" }}>
+              <Form.Group style={{ marginTop: '10px' }}>
                 <Form.Label>User Name:</Form.Label>
-                <Form.Control
-                  type="text"
-                  value={validatedBuyerName}
-                  disabled
-                />
+                <Form.Control type="text" value={validatedBuyerName} disabled />
               </Form.Group>
             )}
           </Modal.Body>
           <Modal.Footer>
-            <Button
-              type="submit"
-              className="adv-button add-buyer-btn"
-              style={{ width: '120px' }}
-            >
+            <Button type="submit" className="adv-button add-buyer-btn" style={{ width: '120px' }}>
               Add Buyer
             </Button>
           </Modal.Footer>

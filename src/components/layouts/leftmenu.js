@@ -2,12 +2,11 @@ import React, { useState } from 'react';
 import '../../styles/bootstrap.min.css'
 import '../../app/globals.css'
 import '../../styles/dashboard.css'
-// import { useRouter } from 'next/router';
 import { LuHome } from "react-icons/lu";
-import { AiOutlineFundView, AiOutlineFileProtect, AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { AiOutlineFundView, AiOutlineFileProtect } from "react-icons/ai";
 import { TbBoxSeam, TbCoinRupee, TbUsers, TbReportMoney, TbListSearch, TbUserPlus, TbChecklist, TbFileDollar } from "react-icons/tb";
 import { Layout, Menu, theme, Breadcrumb } from 'antd';
-import { MdMenuOpen } from "react-icons/md";
+import { MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 const { Header, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -116,17 +115,16 @@ const LeftSideMenu = ({ selectedOption, onSelect }) => {
 
 
   const toggleDropdown = () => {
-    setCollapsed(!collapsed)
+    setCollapsed(!collapsed);
   };
   return (
-
     <Sider className="left side-menu" width={270} trigger={null} collapsible collapsed={collapsed}  >
       {collapsed ? <div >
-        <AiOutlineMenuUnfold className="trigger" onClick={() => setCollapsed(!collapsed)} style={{ height: "30px" }} />
+        <MdKeyboardDoubleArrowRight className="trigger" onClick={() => setCollapsed(!collapsed)} style={{ height: "30px" }} />
       </div>
         :
         <div>
-          <AiOutlineMenuFold className="trigger" onClick={() => setCollapsed(!collapsed)} />
+          <MdKeyboardDoubleArrowLeft className="trigger" onClick={() => setCollapsed(!collapsed)} />
         </div>
       }
       <Menu theme="light" mode="inline" selectedKeys={[selectedKey]} style={{ fontSize: "15px", paddingTop: "50px", justifyContent: "space-between" }}>

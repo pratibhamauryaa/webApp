@@ -459,7 +459,7 @@ code {
     font-size: 15px;
     -webkit-box-shadow: 1px 0 20px rgba(0, 0, 0, .05);
     box-shadow: 1px 0 20px rgba(0, 0, 0, .05);
-    border-color: #eff3f6
+    border-color: #eff3f6;
 }
 
 .dropdown-item.active,
@@ -566,7 +566,7 @@ code {
 }
 
 .badge-success {
-    background-color: #54cc96
+    background-color: #54cc96;
 }
 
 .badge-info {
@@ -3651,17 +3651,18 @@ a:not([href]) {
 
 }
 
-/* .user-icon-logout:hover {
-    color: rgba(1, 0, 128, 0.9);
-} */
 
-/* .logout-logo *:hover{
-    font-weight: bolder;
-    color:rgb(255, 7, 7)
-} */
-.ant-dropdown-menu-title-content:hover {
-    font-weight: bolder;
-    color: rgb(255, 7, 7)
+.logout-btn:hover{
+    font-weight: bold;
+    color:rgb(255, 7, 7) !important;
+}
+.ant-dropdown-menu-title-content:hover{
+    font-weight: bold;
+}
+.ant-dropdown-menu-title-content {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    /* color: rgb(255, 7, 7) */
 }
 
 /* CONTENT SHOPKEEPER OVERFLOW */
@@ -3774,3 +3775,205 @@ li.ant-menu-item.ant-menu-item{
     font-weight: bolder;
 
 }
+.back-icon{
+    color: #010138;
+}
+.back-icon:hover{
+    
+    color: #010080;
+}
+
+.inv-detail{
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.inv-badge{
+    width: fit-content;
+    /* border:1px solid ; */
+    border-radius: 20px;
+    text-align: center;
+
+}
+
+.invoice-img-box{
+    padding-left: 45px;
+    padding-right: 45px;
+    width:100%;
+}
+
+/* notification and header css */
+.right-side-header{
+    margin-top:20px;
+    display: flex;
+    justify-content:'space-between';
+    gap: 30px;
+    margin-right: 20px;
+
+
+}
+
+/* header icon animations start*/
+
+.notif-bell-icon{
+    width: 30px;
+    height: 30px;
+    color:white;
+}
+
+/* .notif-bell-icon:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+    top: calc(var(--mouse-y, 80%) - 50%);
+    left: calc(var(--mouse-x, 80%) - 50%);
+    transform-style: flat;
+    transform: translate3d(-50%, -50%, 0);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
+    transition: width 0.3s ease, height 0.3s ease;
+
+} */
+
+
+.notif-bell-icon:active:after {
+    width: 300px;
+    height: 300px;
+    top: calc(var(--mouse-y, 50%) - 150px);
+    left: calc(var(--mouse-x, 50%) - 150px);
+
+}
+
+.notif-bell-icon:active {
+    transform: scaleX(1.2) scaleY(1.2);
+    font-weight: bolder;
+}
+/* header icon animations end */
+.notif-box{
+    background-color: white !important;
+    opacity: 1 !important;
+    position: absolute;
+    right: 0;
+    padding: 20px;
+    margin-top: 45px;
+    justify-content: center;
+    width: max-content;
+    box-shadow: 2px 1px 20px rgba(36, 36, 36, 0.2);
+
+}
+.all-notif{
+    max-height: 230px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-color: teal !important;
+    flex-wrap: nowrap !important;
+    flex-direction: column !important;
+ 
+}
+.notif-box-container{
+    background-color: white !important;
+    opacity: 1 !important;
+}
+.notif-int-box{
+    border: 1px solid rgb(213, 213, 213);
+    max-width:500px;
+    padding:10px;
+    margin: 10px;
+    background-color: white !important;
+
+}
+
+.del-notif{
+    color: rgb(93, 93, 93);
+    /* height: 20px;
+    width: 20px;  */
+    margin: 20px;
+    font-size: 18px;
+}
+.del-notif:hover{
+    color: crimson;
+    font-size: 20px;
+ 
+}
+.notif-text-box{
+    display: flex;
+    justify-content: space-between;
+    gap: 50;
+}
+
+/* FHC Screen Css Starts  */
+.fhc-score-card{
+    display: flex !important;
+    justify-content: space-between !important;
+    gap:2 !important;
+
+}
+
+.fhc-chart-container{
+    max-width: 250px !important;
+}
+
+.recharts-wrapper{
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0px  !important;
+    margin: 0px !important;
+}
+
+.all-fhc-cards{
+    /* gap: 10px !important; */
+    /* margin: 20px !important; */
+    display: flex !important;
+    /* justify-content: space-between !important;
+    flex:1 !important;
+    gap:2 !important;
+    flex-wrap: wrap !important;
+    flex-grow: unset !important; */
+
+}
+.fhc-card-body{
+    gap: 0px !important;
+    padding:20px !important;
+
+}
+
+.score-board{
+    /* display: flex  !important;
+    justify-content: space-between  !important;
+    gap: 4px  !important; */
+    text-align: left  !important;
+}
+
+.score-board-int>div:nth-last-child(odd){
+    /* background-color: #54cc96; */
+    /* justify-items: right !important; */
+
+}
+
+
+.score-board-int>div:nth-last-child(even){
+    /* background-color: #54cc96; */
+    white-space: nowrap;
+    font-weight: bold;
+
+}
+
+
+/* fhc screen css Ends */
+
+/* credit summary css Starts */
+.all-credit-int-cards{
+    /* gap: 10px !important; */
+    /* margin: 20px !important; */
+    display: flex !important;
+    justify-content: space-between !important;
+    flex:1 !important;
+    gap:2 !important;
+    flex-shrink: initial;
+
+}
+
+/* credit summary css Ends */
+

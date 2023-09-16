@@ -15,7 +15,7 @@ const DonutChart = () => {
         const year = event.target.value;
         
         setSelectedYear(year);
-        console.log(selectedYear);
+        // console.log(selectedYear);
 
         if (year) {
             const fakeData = generateFakeData(year);
